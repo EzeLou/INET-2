@@ -64,7 +64,7 @@
         padding: 16px;
     }
 
-    span.psw {
+    span.pswrd {
         float: right;
         padding-top: 16px;
     }
@@ -72,45 +72,39 @@
 
 <body>
     <div class="container">
-        <!-- 
-        <img src="https://c.tenor.com/j59Sk6QOED0AAAAd/when-the.gif" alt="" srcset="">
-        -->
+
         <div class="imgcontainer">
-            <img class="avatar" src="https://www.itsv.edu.ar/itsv/templates/itsv2013aut/images/object1443227227.png"
-                alt="" srcset="">
-            <!--    
-            <img class="avatar" src="https://media.discordapp.net/attachments/717341286998474792/887423209031475230/image0.gif" alt="" srcset="">
-        -->
+            <img class="avatar" src="https://www.itsv.edu.ar/itsv/templates/itsv2013aut/images/object1443227227.png">
+
 
         </div>
 
-        <form id="login" action="index.html" method="get">
+        <form name="login" id="login">
             <div class="container">
-                <label for="uname"><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="uname" required>
+                <label for="userid"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="userid" required>
 
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
+                <label for="pswrd"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="pswrd" required>
 
-                <button type="submit">Login</button>
-                <label>
-                    <input type="checkbox" checked="checked" name="remember"> Remember me
-                </label>
+                <button type="button" onclick="check(this.form)" value="Login">Login</button>
             </div>
-
-            <!-- 
-            <div class="container" style="background-color:#f1f1f1">
-                <button type="button" class="cancelbtn">Cancel</button>
-                <span class="psw">Forgot <a href="#">password?</a></span>
-            </div>
-            -->
         </form>
-
-
 
 
     </div>
 
+
+    <script language="javascript">
+        function check(form) {
+            if (form.userid.value == "admin" && form.pswrd.value == "admin") {
+                window.open('index.html',"_self")
+            }
+            else {
+                alert("Error, invalid user or password")
+            }
+        }
+    </script>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
