@@ -97,7 +97,8 @@
     <script language="javascript">
         function check(form) {
             if (form.userid.value == "admin" && form.pswrd.value == "admin") {
-                window.open('index.html',"_self")
+                
+                window.open('https://deftflamink.com/inet/index.html',"_self")
             }
             else {
                 alert("Error, invalid user or password")
@@ -107,6 +108,26 @@
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyCDrRGYZBw4hr01aAizaf62dVdTrjWtFgU",
+          authDomain: "inet-2.firebaseapp.com",
+          projectId: "inet-2",
+          storageBucket: "inet-2.appspot.com",
+          messagingSenderId: "416737664567",
+          appId: "1:416737664567:web:a920aaebe6ec46b72069b2"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+      </script>
 </body>
 
 </html>
