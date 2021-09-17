@@ -10,7 +10,12 @@
 
 </head>
 
+<!--
+    
+-->
+
 <style>
+    
     body {
         background-color: #2c3034;
         color: #000;
@@ -22,13 +27,34 @@
         background-color: #2c3034;
         color: #fff;
     }
-
-    .card{
+    
+/*
+    .card {
+        padding: 1rem, 1rem, 1rem, 1rem;
+        border: 1px solid #2c3034;
+        border-radius: 1.5rem;
         background-color: beige;
         height: 25rem;
+        box-shadow: 0 0 1rem 0 rgb(256 256 256/ 10%);
+
 
     }
-    
+    */
+    .feature_box {
+        min-height: 20rem;
+        padding: 1rem 1rem 2rem 1rem;
+        margin: 1rem 0.1rem 1rem 0.1rem;
+        border: transparent;
+        border-radius: 1.5rem;
+        -moz-border-radius: 1.5rem;
+        -webkit-border-radius: 1.5rem;
+
+        color: #fff;
+        background-color: #2c3034;
+        box-shadow: rgb(256 256 256 / 25%) 0px 0.5rem 2rem 0px
+
+
+    }
 </style>
 
 <body>
@@ -49,7 +75,7 @@
                     <tr>
                         <th scope="col">Room #</th>
                         <th scope="col">Max Capacity #</th>
-                        <th scope="col">Actual<br>Ocupation %</th>
+                        <th scope="col">Ocupation %</th>
                         <th scope="col">Status</th>
                     </tr>
                 </thead>
@@ -115,30 +141,42 @@
         <hr>
 
         <section class="border">
-            <div class="row">
-                <div class="col-md-3 card align-self-center">
-                    <h2>Lorem, ipsum.</h2>
-                </div>
-                
-                <div class="col-md-3 card align-self-center">
-                    <h2>Lorem, ipsum.</h2>
-                </div>
-                
-                <div class="col-md-3 card align-self-center">
-                    <h2>Lorem, ipsum.</h2>
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 align-self-center">
+                        <div class="feature_box">
+                            <h2>Lorem, ipsum.</h2>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3 col-sm-6 align-self-center">
+                        <div class="feature_box">
+                            <h2>Lorem, ipsum.</h2>
+
+                            <img class="img-fluid" src="https://media.discordapp.net/attachments/717341286998474792/887423209031475230/image0.gif">
+
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 align-self-center">
+                        <div class="feature_box">
+                            <h2>Lorem, ipsum.</h2>
+                            <img class="img-fluid" src="https://media.discordapp.net/attachments/841143319269474304/875409553276170240/video0_2.gif">
+
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 align-self-center">
+                        <div class="feature_box">
+                            <h2>Lorem, ipsum.</h2>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div class="col-md-3 card align-self-center">
-                    <h2>Lorem, ipsum.</h2>
-                </div>
-            </div>
         </section>
 
         <hr>
 
 
-        <img src="https://media.discordapp.net/attachments/717341286998474792/887423209031475230/image0.gif">
-        <img src="https://media.discordapp.net/attachments/841143319269474304/875409553276170240/video0_2.gif">
 
 
     </div>
