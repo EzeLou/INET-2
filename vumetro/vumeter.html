@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>VU Meter</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      body {
+        background-color: #323232;
+      }
+      section {
+        text-align: center;
+      }
+      canvas {
+        padding: 1em;
+        margin: 0em;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="main">
+      <canvas id="demo" width="100" height="400" data-val="0">No canvas</canvas>
+    </section>
+
+    <div style="text-align: center;">
+        <input type="range" id="demoInput" min="0" max="100" value="0">
+    </div>
+
+    <script src="vumeter.js"></script>
+    <script>
+      window.onload = function(){
+        var demo = document.getElementById('demo');
+        vumeter(demo, {
+          "boxCount": 15,
+          "boxGapFraction": 0.25,
+          "max": 100,
+        });
+
+        var demoInput = document.getElementById('demoInput');
+        demoInput.oninput = function(e){
+            console.log(this.value);
+            demo.setAttribute('data-val', this.value);
+        };
+      };
+    </script>
+    
+  </body>
+</html>
+
+<!--
+  https://github.com/tomnomnom/vumeter/
+-->
