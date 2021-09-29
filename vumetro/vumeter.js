@@ -44,6 +44,7 @@ function vumeter(elem, config){
         }
 
         // Apply jitter
+        /*
         if (jitter > 0 && curVal > 0){
             var amount = (Math.random()*jitter*max);
             if (Math.random() > 0.5){
@@ -54,6 +55,7 @@ function vumeter(elem, config){
         if (curVal < 0) {
             curVal = 0;
         }
+        */
 
         c.save();
         c.beginPath();
