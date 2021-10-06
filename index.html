@@ -151,102 +151,105 @@
 
         <hr>
         <section class="border">
-            <!-- para automatizar el vumetro hay que colocar el valor de CO2 con una var en 'data-val="%var%"'-->
-            <canvas style="transform: rotate(90deg)" id="demo" width="100" height="400" data-val="0"></canvas>
+            <div class="container">
+                <!-- para automatizar el vumetro hay que colocar el valor de CO2 con una var en 'data-val="%var%"'-->
+                <canvas style="transform: rotate(90deg)" id="demo" width="100" height="400" data-val="0"></canvas>
 
-            <!-- barra test: eliminar una vez automatizado-->
-            <div style="text-align: center;">
-                <input type="range" id="demoInput" min="0" max="2000" value="0">
-            </div>
+                <!-- barra test: eliminar una vez automatizado-->
+                <div style="text-align: center;">
+                    <input type="range" id="demoInput" min="0" max="2000" value="0">
+                </div>
 
-            <script>
-                function vumeter(elem, config) {
-                    var max = config.max || 100;
-                    var boxCount = config.boxCount || 10;
-                    var boxCountRed = config.boxCountRed || 3;
-                    var boxCountYellow = config.boxCountYellow || 3;
-                    var boxGapFraction = config.boxGapFraction || 0.2;
-                    var jitter = config.jitter || 0.02;
-                    var redOn = 'rgba(255,47,30,0.9)';
-                    var redOff = 'rgba(64,12,8,0.9)';
-                    var yellowOn = 'rgba(255,215,5,0.9)';
-                    var yellowOff = 'rgba(64,53,0,0.9)';
-                    var greenOn = 'rgba(53,255,30,0.9)';
-                    var greenOff = 'rgba(13,64,8,0.9)';
-                    var width = elem.width;
-                    var height = elem.height;
-                    var curVal = 0;
-                    var boxHeight = height / (boxCount + (boxCount + 1) * boxGapFraction);
-                    var boxGapY = boxHeight * boxGapFraction;
-                    var boxWidth = width - (boxGapY * 2);
-                    var boxGapX = (width - boxWidth) / 2;
-                    var c = elem.getContext('2d');
-                    var draw = function () {
-                        var targetVal = parseInt(elem.dataset.val, 10);
-                        if (curVal <= targetVal) {
-                            curVal += (targetVal - curVal) / 5;
-                        } else {
-                            curVal -= (curVal - targetVal) / 5;
-                        }
-                        c.save();
-                        c.beginPath();
-                        c.rect(0, 0, width, height);
-                        c.fillStyle = 'rgb(32,32,32)';
-                        c.fill();
-                        c.restore();
-                        drawBoxes(c, curVal);
-                        requestAnimationFrame(draw);
-                    };
-                    function drawBoxes(c, val) {
-                        c.save();
-                        c.translate(boxGapX, boxGapY);
-                        for (var i = 0; i < boxCount; i++) {
-                            var id = getId(i);
-                            c.beginPath();
-                            if (isOn(id, val)) {
-                                c.shadowBlur = 10;
-                                c.shadowColor = getBoxColor(id, val);
+                <script>
+                    function vumeter(elem, config) {
+                        var max = config.max || 100;
+                        var boxCount = config.boxCount || 10;
+                        var boxCountRed = config.boxCountRed || 3;
+                        var boxCountYellow = config.boxCountYellow || 3;
+                        var boxGapFraction = config.boxGapFraction || 0.2;
+                        var jitter = config.jitter || 0.02;
+                        var redOn = 'rgba(255,47,30,0.9)';
+                        var redOff = 'rgba(64,12,8,0.9)';
+                        var yellowOn = 'rgba(255,215,5,0.9)';
+                        var yellowOff = 'rgba(64,53,0,0.9)';
+                        var greenOn = 'rgba(53,255,30,0.9)';
+                        var greenOff = 'rgba(13,64,8,0.9)';
+                        var width = elem.width;
+                        var height = elem.height;
+                        var curVal = 0;
+                        var boxHeight = height / (boxCount + (boxCount + 1) * boxGapFraction);
+                        var boxGapY = boxHeight * boxGapFraction;
+                        var boxWidth = width - (boxGapY * 2);
+                        var boxGapX = (width - boxWidth) / 2;
+                        var c = elem.getContext('2d');
+                        var draw = function () {
+                            var targetVal = parseInt(elem.dataset.val, 10);
+                            if (curVal <= targetVal) {
+                                curVal += (targetVal - curVal) / 5;
+                            } else {
+                                curVal -= (curVal - targetVal) / 5;
                             }
-                            c.rect(0, 0, boxWidth, boxHeight);
-                            c.fillStyle = getBoxColor(id, val);
+                            c.save();
+                            c.beginPath();
+                            c.rect(0, 0, width, height);
+                            c.fillStyle = 'rgb(32,32,32)';
                             c.fill();
-                            c.translate(0, boxHeight + boxGapY);
+                            c.restore();
+                            drawBoxes(c, curVal);
+                            requestAnimationFrame(draw);
+                        };
+                        function drawBoxes(c, val) {
+                            c.save();
+                            c.translate(boxGapX, boxGapY);
+                            for (var i = 0; i < boxCount; i++) {
+                                var id = getId(i);
+                                c.beginPath();
+                                if (isOn(id, val)) {
+                                    c.shadowBlur = 10;
+                                    c.shadowColor = getBoxColor(id, val);
+                                }
+                                c.rect(0, 0, boxWidth, boxHeight);
+                                c.fillStyle = getBoxColor(id, val);
+                                c.fill();
+                                c.translate(0, boxHeight + boxGapY);
+                            }
+                            c.restore();
                         }
-                        c.restore();
-                    }
-                    function getBoxColor(id, val) {
-                        if (id > boxCount - boxCountRed) {
-                            return isOn(id, val) ? redOn : redOff;
+                        function getBoxColor(id, val) {
+                            if (id > boxCount - boxCountRed) {
+                                return isOn(id, val) ? redOn : redOff;
+                            }
+                            if (id > boxCount - boxCountRed - boxCountYellow) {
+                                return isOn(id, val) ? yellowOn : yellowOff;
+                            }
+                            return isOn(id, val) ? greenOn : greenOff;
                         }
-                        if (id > boxCount - boxCountRed - boxCountYellow) {
-                            return isOn(id, val) ? yellowOn : yellowOff;
+                        function getId(index) {
+                            return Math.abs(index - (boxCount - 1)) + 1;
                         }
-                        return isOn(id, val) ? greenOn : greenOff;
-                    }
-                    function getId(index) {
-                        return Math.abs(index - (boxCount - 1)) + 1;
-                    }
 
-                    function isOn(id, val) {
-                        var maxOn = Math.ceil((val / max) * boxCount);
-                        return (id <= maxOn);
+                        function isOn(id, val) {
+                            var maxOn = Math.ceil((val / max) * boxCount);
+                            return (id <= maxOn);
+                        }
+                        draw();
                     }
-                    draw();
-                }
-                window.onload = function () {
-                    var demo = document.getElementById('demo');
-                    vumeter(demo, {
-                        "boxCount": 12, //  bars count
-                        "boxGapFraction": 0.25,
-                        "max": 2000,
-                    });
-                    var demoInput = document.getElementById('demoInput');
-                    demoInput.oninput = function (e) {
-                        console.log(this.value);
-                        demo.setAttribute('data-val', this.value);
+                    window.onload = function () {
+                        var demo = document.getElementById('demo');
+                        vumeter(demo, {
+                            "boxCount": 12, //  bars count
+                            "boxGapFraction": 0.25,
+                            "max": 2000,
+                        });
+                        var demoInput = document.getElementById('demoInput');
+                        demoInput.oninput = function (e) {
+                            console.log(this.value);
+                            demo.setAttribute('data-val', this.value);
+                        };
                     };
-                };
-            </script>
+                </script>
+
+            </div>
         </section>
         <hr>
 
